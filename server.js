@@ -17,5 +17,9 @@ app.get('/api/articles', (_, response) => {
   response.json(articles)
 })
 
+app.use((req, res, next) => {
+  res.status(404).sendFile(__dirname + "views/not-found.html")
+})
+
 
 app.listen(3000, () => console.log('My first app listening on port 3000!'))
