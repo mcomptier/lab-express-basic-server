@@ -5,8 +5,12 @@ const app = express()
 
 app.use(express.json())
 
-app.get('/', (request, response) => {
-  response.send('<h1>Welcome Ironhacker. :) with nodemon</h1>')
+app.get('/', (req, res) => {
+  res.sendFile(__dirname + "/views/home.html")
+})
+
+app.get('/blog', (req, res) => {
+  res.sendFile(__dirname + "/views/blog.html")
 })
 
 app.get('/api/projects', (_, response) => {
@@ -18,7 +22,7 @@ app.get('/api/articles', (_, response) => {
 })
 
 app.use((req, res, next) => {
-  res.status(404).sendFile(__dirname + "views/not-found.html")
+  res.status(404).sendFile(__dirname + "/views/not-found.html")
 })
 
 
