@@ -1,9 +1,12 @@
 const express = require('express')
 const articles = require("./data/articles.json")
 const projects = require("./data/projects.json")
+const path = require('path');
 const app = express()
 
 app.use(express.json())
+
+
 
 app.get('/', (req, res) => {
   res.sendFile(__dirname + "/views/home.html")
@@ -20,6 +23,8 @@ app.get('/api/projects', (_, response) => {
 app.get('/api/articles', (_, response) => {
   response.json(articles)
 })
+
+app.use(express.static(path.join(__dirname, 'public')));
 
 app.use((req, res, next) => {
   res.status(404).sendFile(__dirname + "/views/not-found.html")
